@@ -1,0 +1,11 @@
+{
+"provisioners": [
+  {
+    "type": "shell",
+    "inline": [
+      "sudo /usr/local/bin/nubis-update-site"
+    ],
+    "order": "99"
+  }
+]
+}
