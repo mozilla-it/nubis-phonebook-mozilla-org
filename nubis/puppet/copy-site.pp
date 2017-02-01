@@ -1,6 +1,6 @@
 # Copy index page to Apache web root
 
-file {'/var/www/html':
+file {'/var/www/html/index.htm':
 	ensure => file,
 	owner	 => root,
 	group  => root,

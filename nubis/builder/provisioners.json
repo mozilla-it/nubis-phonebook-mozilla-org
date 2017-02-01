@@ -3,7 +3,7 @@
   {
     "type": "shell",
     "inline": [
-      "sudo /usr/local/bin/nubis-update-site"
+      "true"
     ],
     "order": "99"
   }
