@@ -1,11 +1,11 @@
 # Define how Apache should be installed and configured
 
-#class { 'nubis_apache':
+class { 'nubis_apache':
 #  update_script_source   => 'puppet:///nubis/files/update-site.sh',
 #  update_script_interval => {
 #    minute => [ fqdn_rand(30), ( fqdn_rand(30) + 30 ) % 60],
 #  },
-#}
+}
 
 apache::vhost { $project_name:
     serveradmin        => 'webops@mozilla.com',
