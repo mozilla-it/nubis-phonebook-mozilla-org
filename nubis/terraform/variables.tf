@@ -1,5 +1,5 @@
 variable "account" {
-  default = ""
+  default = "appsvcs-phonebook"
 }
 
 variable "region" {
@@ -14,4 +14,6 @@ variable "service_name" {
   default = "appsvcs-phonebook"
 }
 
-variable "ami" {}
+variable "ami" {
+  default = "ami-33b33e53"
+}
