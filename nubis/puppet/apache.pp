@@ -1,18 +1,25 @@
 # Define how Apache should be installed and configured
 
 class { 'nubis_apache':
-#  update_script_source   => 'puppet:///nubis/files/update-site.sh',
-#  update_script_interval => {
-#    minute => [ fqdn_rand(30), ( fqdn_rand(30) + 30 ) % 60],
-#  },
+    # update-site provides instructions on where to get Phonebook
+    update_script_source   => 'puppet:///nubis/files/update-site.sh',
+    update_script_interval => {
+        minute => [ fqdn_rand(30), ( fqdn_rand(30) + 30 ) % 60],
+    },
+
+    # Changing the Apache mpm is necessary for the Apache PHP module
+    mpm_module_type => 'prefork',
 }
+
+class { 'apache::mod::auth_mellon': }
+class { 'apache::mod::php': }
 
 apache::vhost { $project_name:
     serveradmin        => 'webops@mozilla.com',
     port               => 80,
     default_vhost      => true,
     docroot            => '/var/www/html',
-    directoryindex     => 'index.htm',
+    directoryindex     => '200.html',
     docroot_owner      => 'root',
     docroot_group      => 'root',
     block              => ['scm'],
