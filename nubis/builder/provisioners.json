@@ -3,9 +3,9 @@
   {
     "type": "shell",
     "inline": [
-      "true"
+      "sudo apt update"
     ],
-    "order": "99"
+    "order": "1"
   }
 ]
 }
