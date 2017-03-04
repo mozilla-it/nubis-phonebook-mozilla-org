@@ -19,7 +19,7 @@ apache::vhost { $project_name:
     port               => 80,
     default_vhost      => true,
     docroot            => '/var/www/html',
-    directoryindex     => '200.html',
+    directoryindex     => '_revision.txt',
     docroot_owner      => 'root',
     docroot_group      => 'root',
     block              => ['scm'],
