@@ -1,0 +1,10 @@
+[template]
+src = "okta-key.tmpl"
+dest = "/etc/apache2/mellon/phonebook.key"
+prefix = "/%%PROJECT%%/%%ENVIRONMENT%%"
+
+keys = [
+    "/config-okta"
+]
+
+reload_cmd = "/usr/sbin/apachectl graceful"
