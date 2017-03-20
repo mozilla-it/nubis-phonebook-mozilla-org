@@ -23,25 +23,6 @@ apache::vhost { $project_name:
     directoryindex => '_revision.txt',
     docroot_owner  => 'root',
     docroot_group  => 'root',
-    directories    => [
-      {
-        path                       => '/',
-        provider                   => 'location',
-        mellon_enable              => 'auth',
-        mellon_sp_private_key_file => "/etc/apache2/mellon/$project_name.key",
-        mellon_sp_cert_file        => "/etc/apache2/mellon/$project_name.cert",
-        mellon_sp_metadata_file    => "/etc/apache2/mellon/$project_name.xml",
-        mellon_idp_metadata_file   => "/etc/apache2/mellon/$project_name.id-metadata.xml",
-        mellon_endpoint_path       => '/mellon',
-        auth_require               => 'valid-user'
-      },
-      {
-        path          => '/mellon',
-        provider      => 'location',
-        mellon_enable => 'info',
-        auth_type     => 'None'
-      }
-    ],
     block          => ['scm'],
     setenvif       => [
       'X_FORWARDED_PROTO https HTTPS=on',
@@ -53,6 +34,35 @@ apache::vhost { $project_name:
     custom_fragment    => "
 # Clustered without coordination
 FileETag None
+
+<Directory '/var/www/html'>
+  AddType image/svg+xml .svg
+  Options None
+  AllowOverride None
+  Order allow,deny
+  Allow from all
+  Options ExecCGI SymLinksIfOwnerMatch
+</Directory>
+
+<Location />
+  MellonEnable 'auth'
+  MellonEndpointPath /mellon
+  MellonSPPrivateKeyFile /etc/apache2/mellon/$project_name.key
+  MellonSPCertFile /etc/apache2/mellon/$project_name.cert
+  MellonSPMetadataFile /etc/apache2/mellon/$project_name.xml
+  MellonIdPMetadataFile /etc/apache2/mellon/$project_name.id-metadata.xml
+  MellonSecureCookie On
+
+  Require valid-user
+  AuthType 'mellon'
+</Location>
+
+<Location /mellon>
+  AuthType 'none'
+  Order allow,deny
+  Allow from all
+  Satisfy any
+</Location>
 ",
     headers            => [
       "set X-Nubis-Version ${project_version}",
