@@ -15,6 +15,7 @@ class { 'apache::mod::auth_mellon': }
 class { 'apache::mod::php': }
 
 apache::vhost { $project_name:
+    servername     => 'https://phonebook.allizom.org'
     serveradmin    => 'webops@mozilla.com',
     port           => 80,
     default_vhost  => true,
@@ -57,6 +58,10 @@ FileETag None
       "set X-Nubis-Version ${project_version}",
       "set X-Nubis-Project ${project_name}",
       "set X-Nubis-Build   ${packer_build_name}",
+      "set X-Content-Type-Options 'nosniff'",
+      "set X-Frame-Options 'DENY'",
+      "set X-XSS-Protection '1; mode=block'",
+      "set Referrer-Policy 'strict-origin-when-cross-origin'"
     ],
     rewrites           => [
       {
