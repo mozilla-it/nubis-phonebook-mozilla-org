@@ -15,7 +15,7 @@ class { 'apache::mod::auth_mellon': }
 class { 'apache::mod::php': }
 
 apache::vhost { $project_name:
-    servername     => 'https://phonebook.allizom.org',
+    servername     => 'https://phonebook-dev.allizom.org',
     serveradmin    => 'webops@mozilla.com',
     port           => 80,
     default_vhost  => true,
