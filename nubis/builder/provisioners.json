@@ -3,7 +3,8 @@
   {
     "type": "shell",
     "inline": [
-      "sudo apt update"
+      "sudo apt update",
+      "sudo mkdir -p /etc/apache2/mellon"
     ],
     "order": "1"
   }
