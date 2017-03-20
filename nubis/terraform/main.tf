@@ -7,8 +7,7 @@ module "worker" {
   purpose           = "webserver"
   ami               = "${var.ami}"
   elb               = "${module.load_balancer.name}"
-  nubis_sudo_groups = "team_webops"
-  nubis_user_groups = "nubis_global_admins,team_webops"
+  nubis_sudo_groups = "nubis_global_admins,team_webops"
   min_instances     = 2
 }
 
