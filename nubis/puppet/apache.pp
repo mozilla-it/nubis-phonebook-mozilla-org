@@ -15,15 +15,34 @@ class { 'apache::mod::auth_mellon': }
 class { 'apache::mod::php': }
 
 apache::vhost { $project_name:
-    serveradmin        => 'webops@mozilla.com',
-    port               => 80,
-    default_vhost      => true,
-    docroot            => '/var/www/html',
-    directoryindex     => '_revision.txt',
-    docroot_owner      => 'root',
-    docroot_group      => 'root',
-    block              => ['scm'],
-    setenvif           => [
+    serveradmin    => 'webops@mozilla.com',
+    port           => 80,
+    default_vhost  => true,
+    docroot        => '/var/www/html',
+    directoryindex => '_revision.txt',
+    docroot_owner  => 'root',
+    docroot_group  => 'root',
+    directories    => [
+      {
+        path                       => '/',
+        provider                   => 'location',
+        mellon_enable              => 'auth',
+        mellon_sp_private_key_file => '/etc/apache2/mellon/$project_name.key',
+        mellon_sp_cert_file        => '/etc/apache2/mellon/$project_name.cert',
+        mellon_sp_metadata_file    => '/etc/apache2/mellon/$project_name.xml',
+        mellon_idp_metadata_file   => '/etc/apache2/mellon/$project_name.id-metadata.xml',
+        mellon_endpoint_path       => '/mellon',
+        auth_require               => 'valid-user'
+      },
+      {
+        path          => '/mellon',
+        provider      => 'location',
+        mellon_enable => 'info',
+        auth_type     => 'None'
+      }
+    ]
+    block          => ['scm'],
+    setenvif       => [
       'X_FORWARDED_PROTO https HTTPS=on',
       'Remote_Addr 127\.0\.0\.1 internal',
       'Remote_Addr ^10\. internal',
