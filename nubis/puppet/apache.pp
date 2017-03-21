@@ -20,7 +20,7 @@ apache::vhost { $project_name:
     port           => 80,
     default_vhost  => true,
     docroot        => '/var/www/html',
-    directoryindex => '_revision.txt',
+    directoryindex => 'index.php',
     docroot_owner  => 'root',
     docroot_group  => 'root',
     block          => ['scm'],
@@ -45,16 +45,13 @@ FileETag None
 </Directory>
 
 <Location />
-  MellonEnable 'auth'
   MellonEndpointPath /mellon
   MellonSPPrivateKeyFile /etc/apache2/mellon/$project_name.key
   MellonSPCertFile /etc/apache2/mellon/$project_name.cert
   MellonSPMetadataFile /etc/apache2/mellon/$project_name.xml
   MellonIdPMetadataFile /etc/apache2/mellon/$project_name.idp-metadata.xml
   MellonSecureCookie On
-
-  Require valid-user
-  AuthType 'mellon'
+  MellonSubjectConfirmationDataAddressCheck Off
 </Location>
 
 <Location /mellon>
@@ -62,6 +59,12 @@ FileETag None
   Order allow,deny
   Allow from all
   Satisfy any
+</Location>
+
+<Location />
+  MellonEnable 'auth'
+  AuthType Mellon
+  require valid-user
 </Location>
 ",
     headers            => [
@@ -71,13 +74,21 @@ FileETag None
       "set X-Content-Type-Options 'nosniff'",
       "set X-Frame-Options 'DENY'",
       "set X-XSS-Protection '1; mode=block'",
-      "set Referrer-Policy 'strict-origin-when-cross-origin'"
+      "set Referrer-Policy 'strict-origin-when-cross-origin'",
+      "set Strict-Transport-Security 'max-age=31536000'",
+      "set Referrer-Policy 'no-referrer, strict-origin-when-cross-origin'",
+      "set Content-Security-Policy \"default-src 'none'; frame-ancestors 'none'; connect-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; style-src 'self'\"",
+      'always set Public-Key-Pins "max-age=1296000; pin-sha256=\"zSvnhQdjmYpQNahZ5voq6EGaNgaT0ElRiy+mzBD7p+k=\"; pin-sha256=\"5kJvNEMw0KjrCAu7eXY5HZdvyCS13BbA0VJG1RSP91w=\"; pin-sha256=\"YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg=\"; pin-sha256=\"sRHdihwgkaib1P1gxX8HFszlD+7/gTfNvuAybgLPNis=\""'
     ],
     rewrites           => [
       {
         comment      => 'HTTPS redirect',
         rewrite_cond => ['%{HTTP:X-Forwarded-Proto} =http'],
         rewrite_rule => ['. https://%{HTTP:Host}%{REQUEST_URI} [L,R=permanent]'],
+      },
+      {
+        comment => 'Replaces all requests to / with /index.php internally only - addresses github.com/UNINETT/mod_auth_mellon/issues/38',
+        rewrite_rule => ['RewriteRule "^/?$" "/index.php" [PT,QSA]'],
       }
     ]
 }
