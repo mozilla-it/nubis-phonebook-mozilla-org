@@ -82,3 +82,12 @@ FileETag None
     ]
 }
 
+apache::vhost { "svc-healthcheck":
+    serveradmin    => 'webops@mozilla.com',
+    port           => 443,
+    default_vhost  => false,
+    docroot        => '/var/www/healthcheck',
+    directoryindex => 'index.html',
+    docroot_owner  => 'root',
+    docroot_group  => 'root'
+}
