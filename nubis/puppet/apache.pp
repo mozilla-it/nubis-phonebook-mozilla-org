@@ -50,7 +50,7 @@ FileETag None
   MellonSPPrivateKeyFile /etc/apache2/mellon/$project_name.key
   MellonSPCertFile /etc/apache2/mellon/$project_name.cert
   MellonSPMetadataFile /etc/apache2/mellon/$project_name.xml
-  MellonIdPMetadataFile /etc/apache2/mellon/$project_name.id-metadata.xml
+  MellonIdPMetadataFile /etc/apache2/mellon/$project_name.idp-metadata.xml
   MellonSecureCookie On
 
   Require valid-user
