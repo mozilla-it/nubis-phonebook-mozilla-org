@@ -19,6 +19,7 @@ module "load_balancer" {
   account      = "${var.account}"
   service_name = "${var.service_name}"
   health_check_target = "HTTP:443/"
+  ssl_cert_name_prefix = "phonebook"
 }
 
 module "dns" {
