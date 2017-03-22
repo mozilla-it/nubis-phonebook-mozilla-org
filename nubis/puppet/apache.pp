@@ -88,7 +88,7 @@ FileETag None
       },
       {
         comment => 'Replaces all requests to / with /index.php internally only - addresses github.com/UNINETT/mod_auth_mellon/issues/38',
-        rewrite_rule => ['RewriteRule "^/?$" "/index.php" [PT,QSA]'],
+        rewrite_rule => ['"^/?$" "/index.php" [PT,QSA]'],
       }
     ]
 }
