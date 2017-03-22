@@ -14,3 +14,8 @@ package { 'libldap2-dev':
     ensure => present,
     name   => 'libldap2-dev'
 }
+
+package { 'shelldap':
+    ensure => present,
+    name   => 'shelldap'
+}
