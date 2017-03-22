@@ -5,12 +5,12 @@ package { 'php5-ldap':
     name   =>  'php5-ldap'
 }
 
-package { 'libldap':
+package { 'libldap-2.4-2':
     ensure => present,
-    name   => 'libldap'
+    name   => 'libldap-2.4-2'
 }
 
-package { 'openldap':
+package { 'libldap2-dev':
     ensure => present,
-    name   => 'openldap'
+    name   => 'libldap2-dev'
 }
