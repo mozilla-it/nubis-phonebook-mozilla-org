@@ -19,3 +19,8 @@ package { 'shelldap':
     ensure => present,
     name   => 'shelldap'
 }
+
+package { 'ldap-utils':
+    ensure => present,
+    name   => 'ldap-utils'
+}
