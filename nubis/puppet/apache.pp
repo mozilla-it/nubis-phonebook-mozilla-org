@@ -14,8 +14,15 @@ class { 'nubis_apache':
 class { 'apache::mod::auth_mellon': }
 class { 'apache::mod::php': }
 
+if $facts['NUBIS_ENVIRONMENT'] == 'stage' {
+    $servername = 'https://phonebook.allizom.org'
+}
+else {
+    $servername = 'https://phonebook.mozilla.org'
+}
+
 apache::vhost { $project_name:
-    servername     => 'https://phonebook.allizom.org',
+    servername     => $servername,
     serveradmin    => 'webops@mozilla.com',
     port           => 80,
     default_vhost  => true,
