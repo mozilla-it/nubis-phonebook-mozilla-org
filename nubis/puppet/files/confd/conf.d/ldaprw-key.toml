@@ -1,9 +1,9 @@
 [template]
-src = "config-local.tmpl"
-dest = "/var/www/html/config-local.php"
+src = "ldaprw-key.tmpl"
+dest = "/etc/certs/ldaprw.key"
 prefix = "/%%PROJECT%%/%%ENVIRONMENT%%"
 keys = [
-  "/ldap-key"
+  "/ldap/ldap-key"
 ]
 
 reload_cmd = "/usr/sbin/apachectl graceful"

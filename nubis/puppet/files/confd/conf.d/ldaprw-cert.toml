@@ -1,9 +1,9 @@
 [template]
 src = "ldaprw-cert.tmpl"
-dest = "/etc/certs/ldaprw.cert"
+dest = "/etc/certs/ldaprw.crt"
 prefix = "/%%PROJECT%%/%%ENVIRONMENT%%"
 keys = [
-  "/ldap-cert"
+  "/ldap/ldap-cert"
 ]
 
 reload_cmd = "/usr/sbin/apachectl graceful"
