@@ -14,7 +14,7 @@ class { 'nubis_apache':
 class { 'apache::mod::auth_mellon': }
 class { 'apache::mod::php': }
 
-if $facts['NUBIS_ENVIRONMENT'] == 'stage' {
+if $ec2_userdata =~ /NUBIS_STACK=phonebook-stage/ {
     $servername = 'https://phonebook.allizom.org'
 }
 else {
