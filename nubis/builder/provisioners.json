@@ -19,8 +19,8 @@
   {
     "type": "shell",
     "inline": [
-      "echo 'LDAPTLS_CERT=/etc/certs/ldaprw.crt' | sudo tee -a /etc/apache2/envvars",
-      "echo 'LDAPTLS_KEY=/etc/certs/ldaprw.key' | sudo tee -a /etc/apache2/envvars"
+      "echo 'export LDAPTLS_CERT=/etc/certs/ldaprw.crt' | sudo tee -a /etc/apache2/envvars",
+      "echo 'export LDAPTLS_KEY=/etc/certs/ldaprw.key' | sudo tee -a /etc/apache2/envvars"
     ],
     "order": "99"
   }
