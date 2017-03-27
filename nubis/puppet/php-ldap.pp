@@ -24,3 +24,7 @@ package { 'ldap-utils':
     ensure => present,
     name   => 'ldap-utils'
 }
+
+file { '/etc/certs':
+    ensure => directory,
+}
