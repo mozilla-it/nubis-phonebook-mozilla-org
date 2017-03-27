@@ -11,4 +11,4 @@ nubis/builder/variables.json
 nubis/terraform/terraform.tfstate*
 nubis/terraform/.terraform
 nubis/terraform/terraform.tfvars*
-
+nubis/terraform/variables.tf
