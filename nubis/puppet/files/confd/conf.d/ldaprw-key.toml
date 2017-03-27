@@ -1,0 +1,9 @@
+[template]
+src = "config-local.tmpl"
+dest = "/var/www/html/config-local.php"
+prefix = "/%%PROJECT%%/%%ENVIRONMENT%%"
+keys = [
+  "/ldap-key"
+]
+
+reload_cmd = "/usr/sbin/apachectl graceful"
