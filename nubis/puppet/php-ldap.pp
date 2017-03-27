@@ -28,3 +28,8 @@ package { 'ldap-utils':
 file { '/etc/certs':
     ensure => directory,
 }
+
+file { '/etc/ldap/ldap.conf':
+    ensure => present,
+    source => 'puppet:///nubis/files/ldap.conf',
+}
