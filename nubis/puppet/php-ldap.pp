@@ -25,9 +25,9 @@ package { 'ldap-utils':
     name   => 'ldap-utils'
 }
 
-package { 'php-gd':
+package { 'php5-gd':
     ensure => present,
-    name   => 'php-gd'
+    name   => 'php5-gd'
 }
 
 file { '/etc/certs':
