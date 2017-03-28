@@ -21,4 +21,5 @@ resource "consul_keys" "config" {
     path   = "${module.consul.config_prefix}/ENVIRONMENT"
     value  = "${var.environment}"
     delete = true
+  }
 }
