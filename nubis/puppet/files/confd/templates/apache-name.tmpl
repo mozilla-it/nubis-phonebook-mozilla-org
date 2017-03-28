@@ -1,0 +1,1 @@
+{{$env:=getv "/config/ENVIRONMENT"}} ServerName {{if eq $env "prod" }} https://phonebook.mozilla.org {{else}} https://phonebook.allizom.org {{end}}
