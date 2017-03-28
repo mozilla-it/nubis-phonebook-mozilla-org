@@ -14,15 +14,7 @@ class { 'nubis_apache':
 class { 'apache::mod::auth_mellon': }
 class { 'apache::mod::php': }
 
-if $ec2_userdata =~ /NUBIS_STACK=phonebook-stage/ {
-    $servername = 'https://phonebook.allizom.org'
-}
-else {
-    $servername = 'https://phonebook.mozilla.org'
-}
-
 apache::vhost { $project_name:
-    servername     => $servername,
     serveradmin    => 'webops@mozilla.com',
     port           => 80,
     default_vhost  => true,
