@@ -1,0 +1,9 @@
+[template]
+src = "apache-name.tmpl"
+dest = "/etc/apache2/conf-available/hostname.conf"
+prefix = "/%%PROJECT%%/%%ENVIRONMENT%%"
+keys = [
+    "/config"
+]
+
+reload_cmd = "/usr/sbin/apachectl graceful"

@@ -31,6 +31,7 @@ apache::vhost { $project_name:
     access_log_env_var => '!internal',
     access_log_format  => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
     custom_fragment    => "
+Include /etc/apache2/conf-available/servername.conf
 # Clustered without coordination
 FileETag None
 
