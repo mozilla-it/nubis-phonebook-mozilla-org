@@ -1,7 +1,7 @@
 [template]
 src = "config-local.tmpl"
 dest = "/var/www/html/config-local.php"
-prefix = "/%%PROJECT%%/%%ENVIRONMENT%%"
+prefix = "/%%STACK%%/%%ENVIRONMENT%%"
 keys = [
   "/phonebook"
 ]

@@ -1,7 +1,7 @@
 [template]
 src = "okta-cert.tmpl"
 dest = "/etc/apache2/mellon/phonebook.cert"
-prefix = "/%%PROJECT%%/%%ENVIRONMENT%%"
+prefix = "/%%STACK%%/%%ENVIRONMENT%%"
 keys = [
   "/config-okta"
 ]

@@ -1,7 +1,7 @@
 [template]
 src = "apache-name.tmpl"
 dest = "/etc/apache2/conf-available/servername.conf"
-prefix = "/%%PROJECT%%/%%ENVIRONMENT%%"
+prefix = "/%%STACK%%/%%ENVIRONMENT%%"
 keys = [
     "/config"
 ]

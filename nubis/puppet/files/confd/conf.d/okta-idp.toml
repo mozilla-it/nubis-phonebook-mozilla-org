@@ -1,7 +1,7 @@
 [template]
 src = "okta-idp.tmpl"
 dest = "/etc/apache2/mellon/phonebook.idp-metadata.xml"
-prefix = "/%%PROJECT%%/%%ENVIRONMENT%%"
+prefix = "/%%STACK%%/%%ENVIRONMENT%%"
 
 keys = [
     "/config-okta"

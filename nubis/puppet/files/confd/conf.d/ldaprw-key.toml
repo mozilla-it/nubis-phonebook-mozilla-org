@@ -1,7 +1,7 @@
 [template]
 src = "ldaprw-key.tmpl"
 dest = "/etc/certs/ldaprw.key"
-prefix = "/%%PROJECT%%/%%ENVIRONMENT%%"
+prefix = "/%%STACK%%/%%ENVIRONMENT%%"
 keys = [
   "/ldap/ldap-key"
 ]

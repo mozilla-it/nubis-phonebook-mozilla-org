@@ -1,7 +1,7 @@
 [template]
 src = "okta-key.tmpl"
 dest = "/etc/apache2/mellon/phonebook.key"
-prefix = "/%%PROJECT%%/%%ENVIRONMENT%%"
+prefix = "/%%STACK%%/%%ENVIRONMENT%%"
 
 keys = [
     "/config-okta"
