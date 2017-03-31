@@ -110,10 +110,6 @@ apache::vhost { "svc-healthcheck":
     docroot_group  => 'root'
 }
 
-file { '/var/www/inactive':
-    ensure => 'directory',
-}
-
 file { '/var/www/inactive/index.html':
     ensure  => present,
     source  => 'puppet:///nubis/files/index.html',
