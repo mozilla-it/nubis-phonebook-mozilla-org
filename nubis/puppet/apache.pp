@@ -14,16 +14,6 @@ class { 'nubis_apache':
 class { 'apache::mod::auth_mellon': }
 class { 'apache::mod::php': }
 
-file { '/var/www/inactive':
-    ensure => 'directory',
-}
-
-file { '/var/www/inactive/index.html':
-    ensure  => present,
-    source  => 'puppet:///nubis/files/index.html',
-    require => File['/var/www/inactive']
-}
-
 apache::vhost { $project_name:
     default_vhost  => true,
     port           => 80,
@@ -119,3 +109,14 @@ apache::vhost { "svc-healthcheck":
     docroot_owner  => 'root',
     docroot_group  => 'root'
 }
+
+file { '/var/www/inactive':
+    ensure => 'directory',
+}
+
+file { '/var/www/inactive/index.html':
+    ensure  => present,
+    source  => 'puppet:///nubis/files/index.html',
+    require => File['/var/www/inactive']
+}
+
