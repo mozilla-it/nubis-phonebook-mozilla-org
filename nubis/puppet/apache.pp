@@ -112,7 +112,7 @@ apache::vhost { "svc-healthcheck":
 
 file { '/var/www/inactive/index.html':
     ensure  => present,
-    source  => 'puppet:///nubis/files/index.html',
+    source  => 'puppet:///nubis/files/index.htm',
     require => File['/var/www/inactive']
 }
 
