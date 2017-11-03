@@ -11,8 +11,26 @@ class { 'nubis_apache':
     mpm_module_type => 'prefork',
 }
 
-class { 'apache::mod::auth_mellon': }
 class { 'apache::mod::php': }
+
+class { 'apache::mod::auth_mellon':
+  require => [
+    Package['liblasso3'],
+  ],
+}
+
+class { 'apt': }
+
+# Include Houzafa Abbasbhay's PPA repo
+apt::ppa { 'ppa:houzefa-abba/lasso': }
+
+# Install newer liblasso than 2.4.0 to work around a known issue
+package { 'liblasso3':
+  ensure => '2.5.1-1~eob80+1+~ubuntu14.04~xcg.ppa1',
+  require => [
+    Apt::Ppa['ppa:houzefa-abba/lasso'],
+  ],
+}
 
 apache::vhost { "$project_name":
     serveradmin    => 'webops@mozilla.com',
