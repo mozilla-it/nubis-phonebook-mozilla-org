@@ -1,10 +1,10 @@
 [template]
-src = "okta-key.tmpl"
-dest = "/etc/apache2/mellon/phonebook.key"
+src = "idp-xml.tmpl"
+dest = "/etc/apache2/mellon/phonebook.xml"
 prefix = "/%%STACK%%/%%ENVIRONMENT%%"
 
 keys = [
-    "/config-okta"
+    "/identity-provider"
 ]
 
 reload_cmd = "/usr/sbin/apachectl graceful"

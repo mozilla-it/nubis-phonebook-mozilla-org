@@ -1,10 +1,9 @@
 [template]
-src = "okta-idp.tmpl"
-dest = "/etc/apache2/mellon/phonebook.idp-metadata.xml"
+src = "idp-cert.tmpl"
+dest = "/etc/apache2/mellon/phonebook.cert"
 prefix = "/%%STACK%%/%%ENVIRONMENT%%"
-
 keys = [
-    "/config-okta"
+  "/identity-provider"
 ]
 
 reload_cmd = "/usr/sbin/apachectl graceful"
