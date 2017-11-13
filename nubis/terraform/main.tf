@@ -8,6 +8,7 @@ module "worker" {
   ami               = "${var.ami}"
   elb               = "${module.load_balancer.name}"
   nubis_sudo_groups = "nubis_global_admins,team_webops"
+  instance_type     = "t2.small"
 }
 
 module "load_balancer" {
