@@ -9,6 +9,7 @@ module "worker" {
   elb               = "${module.load_balancer.name}"
   nubis_sudo_groups = "nubis_global_admins,team_webops"
   instance_type     = "t2.small"
+  min_instances     = 2
 }
 
 module "load_balancer" {
