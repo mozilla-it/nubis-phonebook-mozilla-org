@@ -31,3 +31,11 @@ module "dns" {
   target       = "${module.load_balancer.address}"
 }
 
+module "cache" {
+  source                 = "github.com/nubisproject/nubis-terraform//cache?ref=v2.0.1"
+  region                 = "${var.region}"
+  environment            = "${var.environment}"
+  account                = "${var.account}"
+  service_name           = "${var.service_name}"
+  client_security_groups = "${module.worker.security_group}"
+}
