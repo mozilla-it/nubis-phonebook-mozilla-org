@@ -7,7 +7,9 @@
       "sudo mkdir -p /etc/apache2/mellon",
       "sudo mkdir -m 755 -p /var/www/healthcheck",
       "sudo mkdir -m 755 -p /var/www/inactive",
-      "sudo chown ubuntu:ubuntu /var/www/healthcheck"
+      "sudo mkdir -m 755 -p /var/www/phonebook",
+      "sudo chown ubuntu:ubuntu /var/www/healthcheck",
+      "sudo chown ubuntu:ubuntu /var/www/phonebook"
     ],
     "order": "1"
   },
@@ -16,6 +18,12 @@
     "source": "healthcheck/",
     "destination": "/var/www/healthcheck",
     "order": "2"
+  },
+  {
+    "type": "file",
+    "source": "phonebook/",
+    "destination": "/var/www/phonebook",
+    "order": "3"
   },
   {
     "type": "shell",
