@@ -1,0 +1,3 @@
+[submodule "phonebook"]
+	path = phonebook
+	url = https://github.com/mozilla/phonebook
