@@ -32,7 +32,7 @@ apache::vhost { "$project_name":
     serveradmin    => 'webops@mozilla.com',
     port           => 80,
     default_vhost  => false,
-    docroot        => '/var/www/html',
+    docroot        => "/var/www/$project_name",
     directoryindex => 'index.php',
     docroot_owner  => 'root',
     docroot_group  => 'root',
@@ -49,7 +49,7 @@ Include /etc/apache2/conf-available/servername.conf
 # Clustered without coordination
 FileETag None
 
-<Directory '/var/www/html'>
+<Directory "/var/www/$project_name">
   AddType image/svg+xml .svg
   Options None
   AllowOverride None
@@ -105,14 +105,4 @@ FileETag None
         rewrite_rule => ['"^/?$" "/index.php" [PT,QSA]'],
       }
     ]
-}
-
-apache::vhost { "svc-healthcheck":
-    serveradmin    => 'webops@mozilla.com',
-    port           => 443,
-    default_vhost  => false,
-    docroot        => '/var/www/healthcheck',
-    directoryindex => 'index.html',
-    docroot_owner  => 'root',
-    docroot_group  => 'root'
 }

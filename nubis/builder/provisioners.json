@@ -6,10 +6,9 @@
       "sudo apt update",
       "sudo mkdir -p /etc/apache2/mellon",
       "sudo mkdir -m 755 -p /var/www/healthcheck",
-      "sudo mkdir -m 755 -p /var/www/inactive",
-      "sudo mkdir -m 755 -p /var/www/phonebook",
+      "sudo mkdir -m 755 -p /var/www/{{user `project_name`}}",
       "sudo chown ubuntu:ubuntu /var/www/healthcheck",
-      "sudo chown ubuntu:ubuntu /var/www/phonebook"
+      "sudo chown ubuntu:ubuntu /var/www/{{user `project_name`}}"
     ],
     "order": "1"
   },
@@ -22,7 +21,7 @@
   {
     "type": "file",
     "source": "phonebook/",
-    "destination": "/var/www/phonebook",
+    "destination": "/var/www/{{user `project_name`}}",
     "order": "3"
   },
   {

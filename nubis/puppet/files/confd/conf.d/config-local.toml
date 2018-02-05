@@ -1,9 +1,11 @@
 [template]
 src = "config-local.tmpl"
-dest = "/var/www/html/config-local.php"
+dest = "/var/www/%%PROJECT%%/config-local.php"
 prefix = "/%%STACK%%/%%ENVIRONMENT%%"
+
 keys = [
-  "/phonebook"
+  "/config/*",
+  "/config"
 ]
 
 reload_cmd = "/usr/sbin/apachectl graceful"
