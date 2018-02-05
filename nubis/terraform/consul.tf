@@ -14,12 +14,16 @@ provider "consul" {
   datacenter = "${module.consul.datacenter}"
 }
 
+resource "random_id" "openid_server_passphrase" {
+  byte_length = 16
+}
+
 # Publish our outputs into Consul for our application to consume
 resource "consul_keys" "config" {
   key {
-    name   = "environment"
-    path   = "${module.consul.config_prefix}/ENVIRONMENT"
-    value  = "${var.environment}"
+    name   = "openid_server_passphrase"
+    path   = "${module.consul.config_prefix}/OpenID/Server/Passphrase"
+    value  = "${random_id.openid_server_passphrase.b64_url}"
     delete = true
   }
 }
