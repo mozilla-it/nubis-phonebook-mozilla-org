@@ -4,7 +4,6 @@
     "type": "shell",
     "inline": [
       "sudo apt update",
-      "sudo mkdir -p /etc/apache2/mellon",
       "sudo mkdir -m 755 -p /var/www/{{user `project_name`}}",
       "sudo chown ubuntu:ubuntu /var/www/{{user `project_name`}}"
     ],

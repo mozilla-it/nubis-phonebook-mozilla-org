@@ -1,9 +1,0 @@
-[template]
-src = "apache-name.tmpl"
-dest = "/etc/apache2/conf-available/servername.conf"
-prefix = "/%%STACK%%/%%ENVIRONMENT%%"
-keys = [
-    "/config"
-]
-
-reload_cmd = "/usr/sbin/apachectl graceful"

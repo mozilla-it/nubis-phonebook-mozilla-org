@@ -3,6 +3,21 @@ class nubis::apache::sso(
   $mod_auth_openidc_version = '2.2.0',
   $libcjose_version = '0.4.1',
 ){
+
+  $custom_fragment = "
+OIDCResponseType 'code'
+OIDCScope 'openid email profile'
+OIDCOAuthRemoteUserClaim email
+OIDCRemoteUserClaim email
+OIDCOAuthTokenExpiryClaim exp absolute mandatory
+OIDCPassIDTokenAs claims serialized
+OIDCOAuthTokenIntrospectionInterval 15
+OIDCUserInfoRefreshInterval 15
+OIDCSessionMaxDuration 0
+OIDCSessionInactivityTimeout 43200
+OIDCOutgoingProxy proxy.service.consul:3128
+"
+
   # Install mod_auth_openidc and dependency
   package { 'libjansson4':
     ensure => installed,
