@@ -22,22 +22,22 @@ class { 'apache::mod::auth_mellon':
 class { 'apt': }
 apt::ppa { 'ppa:houzefa-abba/lasso': }
 package { 'liblasso3':
-  ensure => '2.5.1-1~eob80+1+~ubuntu14.04~xcg.ppa1',
+  ensure  => '2.5.1-1~eob80+1+~ubuntu14.04~xcg.ppa1',
   require => [
     Apt::Ppa['ppa:houzefa-abba/lasso'],
   ],
 }
 
-apache::vhost { "$project_name":
-    serveradmin    => 'webops@mozilla.com',
-    port           => 80,
-    default_vhost  => false,
-    docroot        => "/var/www/$project_name",
-    directoryindex => 'index.php',
-    docroot_owner  => 'root',
-    docroot_group  => 'root',
-    block          => ['scm'],
-    setenvif       => [
+apache::vhost { $project_name:
+    serveradmin        => 'webops@mozilla.com',
+    port               => 80,
+    default_vhost      => false,
+    docroot            => "/var/www/${project_name}",
+    directoryindex     => 'index.php',
+    docroot_owner      => 'root',
+    docroot_group      => 'root',
+    block              => ['scm'],
+    setenvif           => [
       'X_FORWARDED_PROTO https HTTPS=on',
       'Remote_Addr 127\.0\.0\.1 internal',
       'Remote_Addr ^10\. internal',
@@ -49,7 +49,7 @@ Include /etc/apache2/conf-available/servername.conf
 # Clustered without coordination
 FileETag None
 
-<Directory "/var/www/$project_name">
+<Directory /var/www/${project_name}>
   AddType image/svg+xml .svg
   Options None
   AllowOverride None
@@ -60,10 +60,10 @@ FileETag None
 
 <Location />
   MellonEndpointPath /mellon
-  MellonSPPrivateKeyFile /etc/apache2/mellon/$project_name.key
-  MellonSPCertFile /etc/apache2/mellon/$project_name.cert
-  MellonSPMetadataFile /etc/apache2/mellon/$project_name.xml
-  MellonIdPMetadataFile /etc/apache2/mellon/$project_name.idp-metadata.xml
+  MellonSPPrivateKeyFile /etc/apache2/mellon/${project_name}.key
+  MellonSPCertFile /etc/apache2/mellon/${project_name}.cert
+  MellonSPMetadataFile /etc/apache2/mellon/${project_name}.xml
+  MellonIdPMetadataFile /etc/apache2/mellon/${project_name}.idp-metadata.xml
   MellonSecureCookie On
   MellonSubjectConfirmationDataAddressCheck Off
 </Location>
@@ -101,7 +101,7 @@ FileETag None
         rewrite_rule => ['. https://%{HTTP:Host}%{REQUEST_URI} [L,R=permanent]'],
       },
       {
-        comment => 'Replaces all requests to / with /index.php internally only - addresses github.com/UNINETT/mod_auth_mellon/issues/38',
+        comment      => 'Replaces all requests to / with /index.php internally only - addresses github.com/UNINETT/mod_auth_mellon/issues/38',
         rewrite_rule => ['"^/?$" "/index.php" [PT,QSA]'],
       }
     ]
