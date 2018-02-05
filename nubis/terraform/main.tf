@@ -9,16 +9,16 @@ module "worker" {
   elb               = "${module.load_balancer.name}"
   nubis_sudo_groups = "nubis_global_admins,team_webops"
   instance_type     = "t2.small"
-  min_instances     = 2
+  min_instances     = 1
 }
 
 module "load_balancer" {
-  source       = "github.com/nubisproject/nubis-terraform//load_balancer?ref=v2.0.1"
-  region       = "${var.region}"
-  environment  = "${var.environment}"
-  account      = "${var.account}"
-  service_name = "${var.service_name}"
-  health_check_target = "HTTP:443/"
+  source               = "github.com/nubisproject/nubis-terraform//load_balancer?ref=v2.0.1"
+  region               = "${var.region}"
+  environment          = "${var.environment}"
+  account              = "${var.account}"
+  service_name         = "${var.service_name}"
+  health_check_target  = "HTTP:443/"
   ssl_cert_name_prefix = "phonebook"
 }
 
