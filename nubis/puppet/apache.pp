@@ -79,7 +79,7 @@ apache::vhost { $project_name:
       "set Referrer-Policy 'strict-origin-when-cross-origin'",
       "set Strict-Transport-Security 'max-age=31536000'",
       "set Referrer-Policy 'no-referrer, strict-origin-when-cross-origin'",
-      "set Content-Security-Policy \"default-src 'none'; frame-ancestors 'none'; connect-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; style-src 'self'\"",
+      "set Content-Security-Policy \"default-src 'none'; frame-ancestors 'none'; connect-src 'self'; font-src 'self' https://fonts.gstatic.com; img-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com\"",
     ],
     rewrites           => [
       {
