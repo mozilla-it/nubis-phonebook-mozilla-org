@@ -5,5 +5,3 @@ prefix = "/%%STACK%%/%%ENVIRONMENT%%"
 keys = [
   "/ldap/ldap-key"
 ]
-
-reload_cmd = "/usr/sbin/apachectl graceful"

@@ -22,6 +22,14 @@ file { "/var/www/${project_name}/_health_":
   content => "HEALTHY\n",
 }
 
+file { "/var/www/${project_name}/config-local.php":
+  ensure  => file,
+  owner   => 'root',
+  group   => 'root',
+  mode    => '0644',
+  source  => 'puppet:///nubis/files/config-local.php'
+}
+
 apache::vhost { $project_name:
     serveradmin        => 'webops@mozilla.com',
     port               => 80,
