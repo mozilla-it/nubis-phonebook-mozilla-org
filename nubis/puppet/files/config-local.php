@@ -1,6 +1,6 @@
 <?php
 
-require_once "/etc/nubis-config/phonebook.php"
+require_once "/etc/nubis-config/phonebook.php";
 
 /*
  * This is where you would override certain config values, locally.
