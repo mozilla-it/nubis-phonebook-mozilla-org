@@ -1,3 +1,5 @@
+# XXX: This should live in nubis_apache eventually
+
 # Stub class for SSO
 class nubis::apache::sso(
   $mod_auth_openidc_version = '2.2.0',
