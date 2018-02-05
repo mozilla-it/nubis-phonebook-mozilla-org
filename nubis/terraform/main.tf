@@ -18,7 +18,7 @@ module "load_balancer" {
   environment          = "${var.environment}"
   account              = "${var.account}"
   service_name         = "${var.service_name}"
-  health_check_target  = "HTTP:443/"
+  health_check_target  = "HTTP:443/_health_"
   ssl_cert_name_prefix = "phonebook"
 }
 
