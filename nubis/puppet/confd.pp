@@ -6,3 +6,8 @@ file { '/etc/confd':
   group   => 'root',
   source  => 'puppet:///nubis/files/confd',
 }
+
+include nubis_configuration
+nubis::configuration{ $project_name:
+  format  => 'php',
+}
