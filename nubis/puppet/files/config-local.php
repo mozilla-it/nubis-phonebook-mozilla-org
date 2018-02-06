@@ -16,13 +16,17 @@ define('LDAP_BIND_PW', $ldap_bind_pw);
 // only non-human and/or admin accounts match this filter -- 20160411 atoll
 define('LDAP_EXCLUDE', '(!(mail=*_*@mozilla.com))');
 
-// Memcache (port number is mandatory)
-define("MEMCACHE_ENABLED", true);
-$memcache_servers = array(
-    "$ldap_host:$Cache_Port",
-);
-
-define('MEMCACHE_PREFIX', 'phonebook');
+if (empty($Cache_Endpoint)) {
+  define("MEMCACHE_ENABLED", false);
+}
+else {
+  // Memcache (port number is mandatory)
+  define("MEMCACHE_ENABLED", true);
+  define('MEMCACHE_PREFIX', 'phonebook');
+  $memcache_servers = array(
+    "$Cache_Endpoint:$Cache_Port",
+  );
+}
 
 // Restrict the number of results returned for user-initiated searches (0 == no limit)
 define('RESULT_SIZE_LIMIT', 24);
